@@ -1,6 +1,15 @@
-var http = require('http');
-http.createServer(function (req, res) {
-    console.log(`Just got a request at ${req.url}!`)
-    res.write('Yo!');
-    res.end();
-}).listen(process.env.PORT || 3000);
+import { exec } from 'child_process';
+
+function runDev() {
+  const npmCommand = 'npm run dev';
+  
+  exec(npmCommand, (error, stdout, stderr) => {
+    if (error) {
+      console.error(`Error: ${error.message}`);
+    } else {
+      console.log(stdout);
+    }
+  });
+}
+
+runDev();
